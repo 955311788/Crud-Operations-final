@@ -13,6 +13,11 @@ const PORT = process.env.PORT;
 
 app.use(express.static('public'));
 
+// Route handler for the root URL
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + 'index.html');
+});
+
 // creates the certficate table based on the provided attributes. 
 app.get("/create", asyncHandler(async (req, res) => {
     const { certificateNumber, name, Address, nationality, dob } = req.query;
