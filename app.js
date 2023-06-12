@@ -15,7 +15,7 @@ const PORT = process.env.PORT;
 
 // Route handler for the root URL
 app.get('/',asyncHandler(async (req, res) => {
-  res.sendFile('index.html');
+  res.sendFile('Index.html');
 });
 
 // creates the certficate table based on the provided attributes. 
