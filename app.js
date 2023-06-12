@@ -11,11 +11,11 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 // Route handler for the root URL
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile('index.html');
 });
 
 // creates the certficate table based on the provided attributes. 
