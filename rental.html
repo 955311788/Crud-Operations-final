@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Retrieve member IDs 
+            $.get("/retrieveRentalMembers", function(memberIDs) {
+                // Populate member ID dropdown
+                var memberIDSelect = $("#memberID");
+                $.each(memberIDs, function(index, memberID) {
+                    memberIDSelect.append(new Option(memberID, memberID));
+                      // Retrieve all plane makes
+            $.get("/retrievePlaneMakes", function(planeMakes) {
+                // Populate the "Planes" selector
+                const planesSelect = $("#planeChoice");
+                planesSelect.empty(); // Clear existing options
+                $.each(planeMakes, function(index, planeMake) {
+                    planesSelect.append(new Option(planeMake, planeMake));
+                });  
+            });
+        });
+    });
+});
+          
+        
+    </script>
+</head>
+<body>
+    <h1>Rental Request Form</h1>
+    <h4><em>Fill out the information below to request a plane rental.</em></h4>
+    <br>
+    <form action ="/createRental" method="GET">
+        <label> Rental ID</label>
+        <input type="Number" name="rentalID" size="15" maxlength="15" >
+        <br>
+        <br>
+        <label> Member ID</label>
+        <select id = 'memberID' name = "memberID" ></select>
+        <br>
+        <br>
+        <label> Rental Date</label>
+        <input type="date" name = "rentalDate" size = "15" maxlength="15" required="required">
+        <br>
+        <br>
+        <label> Hours planned</label>
+        <input type = 'Number' name = "hoursPlanned" size = "10" maxlength = "15" required = "required">
+        <br>
+        <br>
+        <label for="Planes">Choose a plane:</label>
+        <select id="planeChoice" name="planeChoice"></select>
+        <br>
+        <br>
+        <label> Estimated Cost</label>
+        <input type="number" name="estimatedCost"  /> 
+        <br>
+        <br>
+        <button type="submit" > Submit </button>
+        <br>
+
+    </form>
+    <h2><a href = "Index.html" > Home Page</a></h1>
+</body>
+
+</html>
