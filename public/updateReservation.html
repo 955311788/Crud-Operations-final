@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Retrieve all Rental IDs 
+            $.get("/retrieveRentals", function(rentalIDs) {
+                // Populate Rental ID dropdown
+                rentalIDSelect = $("#rentalID");
+                rentalIDSelect.empty(); // Clear existing options
+                $.each(rentalIDs, function(index, rentalID) {
+                    rentalIDSelect.append(new Option(rentalID, rentalID));
+                });
+            $.get("/retrievePlaneMakes", function(planeMakes) {
+                        // Populate the "Planes" selector
+                        const planesSelect = $("#planeChoice");
+                        planesSelect.empty(); // Clear existing options
+                        $.each(planeMakes, function(index, planeMake) {
+                            planesSelect.append(new Option(planeMake, planeMake));
+                    });  
+                });
+            });  
+        });
+
+        function refreshPage() {
+            location.reload();
+          }
+ 
+        function populateForm() {
+            // Retrieve the form elements
+            const rentalIDInput = document.querySelector('#rentalID');
+            const memberIDInput = document.querySelector('input[name="memberID"]')
+            const rentalDateInput = document.querySelector('input[name="rentalDate"]');
+            const hoursPlannedInput = document.querySelector('input[name="hoursPlanned"]');
+            const planeChoiceInput = document.querySelector('#planeChoice');
+            const estimatedCostInput = document.querySelector('#estimatedCost');
+
+            // Make a request to retrieve the record based on the certificate number
+            const rentalID = rentalIDSelect.val();
+            const url = `/retrieveRental?rentalID=${rentalID}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the form fields with the retrieved data
+                    rentalIDInput.value = data.rentalID;
+                    memberIDInput.value = data.memberID;
+                    rentalDateInput.value = data.rentalDate;
+                    hoursPlannedInput.value = data.hoursPlanned;
+                    planeChoiceInput.value = data.planeChoice;
+                    estimatedCostInput.value = data.estimatedCost;
+                    
+                })
+                .catch(error => console.error(error));
+            };
+            
+    </script>
+</head>
+<body>
+    <h1>Rental update form</h1>
+    <h4><em>Fill out the information below to update or delete a plane reservation.</em></h4>
+    <br>
+<form action ="/createRental" method="GET">
+    <label>Please select the Rental ID</label>
+    <select id="rentalID" name = rentalID onchange="populateForm()" >
+        <option value="">Loading rentals.</option>
+    </select>
+    <br>
+    <br>
+    <label> MemberID</label>
+    <input type = "number" name = "memberID" size = 15 maxlength="15">
+    <br>
+    <br>
+    <label> New Rental Date</label>
+    <input type="date" name = "rentalDate" size = "15" maxlength="15" >
+    <br>
+    <br>
+    <label> New Hours planned</label>
+    <input type = 'number' name = "hoursPlanned" size = "10" maxlength = "15" >
+    <br>
+    <br>
+    <label for="Planes">Change plane:</label>
+    <select id="planeChoice" name="planeChoice">
+      <option value="loading">loading</option>
+    </select>
+    <br>
+    <br>
+    <label> Estimated Cost</label>
+    <input type="number" name="estimatedCost" id = "estimatedCost" >
+    <br>
+    <br>
+    <input type="submit" value="Update Reservation" formaction="/updateRental" formmethod="GET" onclick = "refreshPage()">
+    <br>
+    <br>
+    <input type="submit" value="Delete Reservation" formaction="/deleteRental" formmethod="GET" onclick = "refreshPage()">
+</form>
+<br>
+
+<h2><a href = "Index.html" > Home Page</a></h1>
+</body>
+</html>
