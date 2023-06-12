@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 //app.use(express.static('public'));
 
 // Route handler for the root URL
-app.get('/', (req, res) => {
+app.get('/',asyncHandler(async (req, res) => {
   res.sendFile('index.html');
 });
 
