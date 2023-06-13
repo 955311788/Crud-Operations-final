@@ -21,6 +21,10 @@ app.get('/addPlane.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'addPlane.html'));
 });
 
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/editPlane.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'editPlane.html'));
 });
