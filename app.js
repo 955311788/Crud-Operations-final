@@ -17,6 +17,39 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/addPlane.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'addPlane.html'));
+});
+
+app.get('/editPlane.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'editPlane.html'));
+});
+
+app.get('/memberUpdate.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'memberUpdate.html'));
+});
+
+app.get('/newMember.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'newMember.html'));
+});
+
+app.get('/pilotCertificate.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'pilotCertificate.html'));
+});
+
+app.get('/rental.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'rental.html'));
+});
+
+app.get('/updatePilotCertificate.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'updatePilotCertificate.html'));
+});
+
+app.get('/updateReservation.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'updateReservation.html'));
+});
+
+
 // creates the certficate table based on the provided attributes. 
 app.get("/create", asyncHandler(async (req, res) => {
     const { certificateNumber, name, Address, nationality, dob } = req.query;
