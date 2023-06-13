@@ -33,7 +33,7 @@ const createPlane = async (planeID, year, make, color, horsepower, vfr) => {
   
     try {
       const savedPlane = await plane.save();
-      return savedPlane;
+      return true;
     } catch (error) {
       // Handle any errors that occur during the save operation
       throw new Error(error.message);
@@ -57,14 +57,14 @@ const findAllPlanes = async () => {
 const updatePlane = async (filter, update) => {
     try {
       const result = await Plane.updateOne(filter, update);
-      return result;
+      return true;
     } catch (error) {
       throw new Error(error.message);
     }
   };
 const deletePlane = async (filter) => {
     const delResult = await Plane.deleteMany(filter);
-    return delResult.deletedCount;
+    return true;
   }
 
 db.once("open", () => {
