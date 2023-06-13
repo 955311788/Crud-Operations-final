@@ -31,7 +31,7 @@ const createUserCertificate = async (certificateNumber, name, Address, nationali
   
     try {
       const savedCertificate = await userCertificate.save();
-      return savedCertificate;
+      return true;
     } catch (error) {
       // Handle any errors that occur during the save operation
       throw new Error(error.message);
@@ -55,14 +55,14 @@ const findAllCertificates = async () => {
 const updateUserCertificate = async (filter, update) => {
     try {
       const result = await Certificate.updateOne(filter, update);
-      return result;
+      return true;
     } catch (error) {
       throw new Error(error.message);
     }
   };
 const deleteCertificate = async (filter) => {
     const delResult = await Certificate.deleteMany(filter);
-    return delResult.deletedCount;
+    return true;
   }
 
 db.once("open", () => {
