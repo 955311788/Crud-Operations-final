@@ -14,8 +14,7 @@ const PORT = process.env.PORT;
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'index.html');
-  res.sendFile(filePath);
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // creates the certficate table based on the provided attributes. 
