@@ -34,7 +34,7 @@ const createRental = async (rentalID, memberID, rentalDate, hoursPlanned, planeC
   
     try {
       const savedRental = await rental.save();
-      return savedRental;
+      return true;
     } catch (error) {
       // Handle any errors that occur during the save operation
       throw new Error(error.message);
@@ -58,14 +58,14 @@ const findAllRentals = async () => {
 const updateRental = async (filter, update) => {
     try {
       const result = await Rental.updateOne(filter, update);
-      return result;
+      return true;
     } catch (error) {
       throw new Error(error.message);
     }
   };
 const deleteRental = async (filter) => {
     const delResult = await Rental.deleteMany(filter);
-    return delResult.deletedCount;
+    return true;
   }
 
 db.once("open", () => {
