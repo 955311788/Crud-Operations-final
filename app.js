@@ -53,7 +53,7 @@ app.get('/updateReservation.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'updateReservation.html'));
 });
 
-
+// retrieves all certificates base on the certificate id to populate a drop down
 // creates the certficate table based on the provided attributes. 
 app.get("/create", asyncHandler(async (req, res) => {
     const { certificateNumber, name, Address, nationality, dob } = req.query;
@@ -64,8 +64,8 @@ app.get("/create", asyncHandler(async (req, res) => {
         Address,
         nationality,
         dob)
-
         certificate;
+        res.send('<script>alert("Save successful"); window.location.href = "/newMember.html";</script>');
 
     res.send(certificate)
 
@@ -132,7 +132,8 @@ app.get("/update", asyncHandler(async (req, res) => {
     };
   
     const result = await certificates.updateUserCertificate({ certificateNumber }, update);
-    res.send({ numOfCertificatesUpdated: result.modifiedCount });
+    res.send('<script>alert("Certifiacate updated Successfully"); window.location.href = "/updatePilotCertficate.html";</script>');
+    //res.send({ numOfCertificatesUpdated: result.modifiedCount });
   }));
 
 // deletes the certificate based on certificate ID
@@ -158,7 +159,8 @@ app.get("/delete", asyncHandler(async (req, res) => {
     }
   
     const result = await certificates.deleteCertificate(filter);
-    res.send({numOfCertificatesDeleted: result});
+    //res.send({numOfCertificatesDeleted: result});
+    res.send('<script>alert("delete Successful"); window.location.href = "/delete.html";</script>');
     
 
 }))
@@ -178,7 +180,9 @@ app.get("/createPlane", asyncHandler(async (req, res) => {
       color,
       horsepower,
       vfr)
+      res.send('<script>alert("Save successful"); window.location.href = "/index.html";</script>');
   res.send(plane)
+  
 
 }))
 
@@ -251,7 +255,8 @@ app.get("/updatePlane", asyncHandler(async (req, res) => {
   };
 
   const result = await planes.updatePlane({ planeID: planeId }, update);
-  res.send({ numOfPlanesUpdated: result.modifiedCount });
+  //res.send({ numOfPlanesUpdated: result.modifiedCount });
+  res.send('<script>alert("plane update successfull"); window.location.href = "/editPlane.html";</script>');
 }));
 
 // deletes the plane based on plane id
@@ -277,7 +282,8 @@ app.get("/deletePlane", asyncHandler(async (req, res) => {
   }
 
   const result = await planes.deletePlane(filter);
-  res.send({numOfPlanesDeleted: result});
+  //res.send({numOfPlanesDeleted: result});
+  res.send('<script>alert("plane deleted"); window.location.href = "/editPlane.html";</script>');
   
 
 }))
@@ -298,7 +304,7 @@ app.get("/createMember", asyncHandler(async (req, res) => {
       phoneNumber, 
       email,
       dob)
-
+      res.send('<script>alert("Save successful"); window.location.href = "/index.html";</script>');
 
   res.send(member)
 
@@ -397,7 +403,8 @@ app.get("/updateMember", asyncHandler(async (req, res) => {
   };
 
   const result = await members.updateMember({ memberID: memberId }, update);
-  res.send({ numOfMembersUpdated: result.modifiedCount });
+  //res.send({ numOfMembersUpdated: result.modifiedCount });
+  res.send('<script>alert("member updated successfully"); window.location.href = "/memberUpdate.html";</script>');
 }));
 
 // deletes the member based on member ID
@@ -426,7 +433,8 @@ app.get("/deleteMember", asyncHandler(async (req, res) => {
   }
 
   const result = await members.deleteMember(filter);
-  res.send({numOfMembersDeleted: result});
+  //res.send({numOfMembersDeleted: result});
+  res.send('<script>alert("member deleted successfully"); window.location.href = "/memberUpdate.html";</script>');
   
 
 }))
@@ -453,6 +461,7 @@ app.get("/createRental", asyncHandler(async (req, res) => {
       planeChoice,
       estimatedCost
       );
+      res.send('<script>alert("Save successful"); window.location.href = "/index.html";</script>');
       
   res.send(rental)
 
@@ -537,7 +546,8 @@ app.get("/updateRental", asyncHandler(async (req, res) => {
   };
 
   const result = await rentals.updateRental({ rentalID: rentalId }, update);
-  res.send({ numOfRentalsUpdated: result.modifiedCount });
+  //res.send({ numOfRentalsUpdated: result.modifiedCount });
+  res.send('<script>alert("rental updated successfully"); window.location.href = "/updateReservation.html";</script>');
 }));
 
 // deletes the rental based on rental ID
@@ -566,7 +576,8 @@ app.get("/deleteRental", asyncHandler(async (req, res) => {
   }
 
   const result = await rentals.deleteRental(filter);
-  res.send({numOfRentalsDeleted: result});
+  //res.send({numOfRentalsDeleted: result});
+  res.send('<script>alert("rental deleted successfully"); window.location.href = "/updateReservation.html";</script>');
   
 
 }))
