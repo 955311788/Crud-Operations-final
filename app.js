@@ -41,8 +41,8 @@ app.get('/rental.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'rental.html'));
 });
 
-app.get('/updatePilotCertificate.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'updatePilotCertificate.html'));
+app.get('/updatePilotCertficate.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'updatePilotCertficate.html'));
 });
 
 app.get('/updateReservation.html', (req, res) => {
