@@ -37,7 +37,7 @@ const createMember = async (memberID, certificateID, lastName, firstName, addres
   
     try {
       const savedMember = await member.save();
-      return savedMember;
+      return true;
     } catch (error) {
       // Handle any errors that occur during the save operation
       throw new Error(error.message);
@@ -61,14 +61,14 @@ const findAllMembers = async () => {
 const updateMember = async (filter, update) => {
     try {
       const result = await Member.updateOne(filter, update);
-      return result;
+      return true;
     } catch (error) {
       throw new Error(error.message);
     }
   };
 const deleteMember = async (filter) => {
     const delResult = await Member.deleteMany(filter);
-    return delResult.deletedCount;
+    return true;
   }
 
 db.once("open", () => {
